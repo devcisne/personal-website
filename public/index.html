@@ -39,5 +39,26 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="tagcanvas.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var options = {
+        textColour: "#00A8E8",
+        depth: 0.99,
+        outlineMethod: "none",
+        initial:[0.070, 0.080],
+        noSelect:true,
+        wheelZoom:false
+      };
+
+      function renderTagCloud() {
+        try {
+          TagCanvas.Start("myCanvas",'',options);
+        } catch (e) {
+          // something went wrong, hide the canvas container
+          document.getElementById("myCanvasContainer").style.display = "none";
+        }
+      };
+
+    </script>
   </body>
 </html>
