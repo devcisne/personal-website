@@ -8,7 +8,7 @@ import {
 } from "react-icons/io";
 
 const CollapsableSection = ({ title, text }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
     <>
@@ -19,7 +19,7 @@ const CollapsableSection = ({ title, text }) => {
         {isCollapsed && (
           <IoIosArrowDropdownCircle className="inline mr-2" color="#007EA7" />
         )}
-        <h1 className="text-l font-semibold text-[#007EA7] inline ">{title}</h1>
+        <h1 className="text-l font-semibold text-[#007EA7] inline hover:underline hover:decoration-[#00A8E8]">{title}</h1>
       </button>
       {!isCollapsed && (
         <>

@@ -3,7 +3,6 @@ import { CgClose, CgMenu } from "react-icons/cg";
 import { Link, useLocation } from "react-router-dom";
 function NavBar() {
   const location = useLocation();
-  console.log(location.pathname);
 
   const navigation = [
     { name: "Home", route: "/" },
