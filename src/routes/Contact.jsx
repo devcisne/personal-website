@@ -2,9 +2,21 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const sendForm = (data) => {
   console.log(data)
+  axios({ method: "POST", url: "http://localhost:5000/sendMail", data }).then((response) => {
+    console.log(response)
+
+    console.log(response.data)
+    if (response.data.status === 'success') {
+      alert("Message Sent.");
+      this.resetForm()
+    } else if (response.data.status === 'fail') {
+      alert("Message failed to send.")
+    }
+  })
 }
 
 const Contact = () => {

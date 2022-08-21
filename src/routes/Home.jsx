@@ -1,10 +1,9 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 const Home = () => {
-    useEffect(()=>window.renderTagCloud())
-    // window.testFunc()
+  useEffect(() => window.renderTagCloud())
 
   return (
     <>
@@ -71,7 +70,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
