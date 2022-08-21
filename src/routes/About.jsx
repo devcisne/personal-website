@@ -154,7 +154,7 @@ className="default-link"
 href="https://www.commoncriteriaportal.org/"
 >
 Common Criteria
-</a> compliant security evaluations on a wide range of IT product for our clients which include some of the biggest vendors in the industry e.g. IBM, HP, Huawei,etc. and to participate in the development of software for internal use with  Python and Javascript.`,
+</a> compliant security evaluations on a wide range of IT products for our clients which include some of the biggest vendors in the industry e.g. IBM, HP, Huawei,etc. and to participate in the development of software for internal use with  Python and Javascript.`,
   ];
 
   return (
