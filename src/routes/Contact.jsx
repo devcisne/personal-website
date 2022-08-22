@@ -32,10 +32,10 @@ const Contact = () => {
     <>
       <NavBar />
       <div className="  bg-[#ffffff] border-t border-gray-900 ">
-        <div className="container py-10 px-10 h-full">
+        <div className=" py-10 px-10 h-full">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Contact</h1>
 
-          <div className="flex sm:flex-row flex-col">
+          <div className="flex sm:flex-row flex-col ">
             <div className="flex-auto w-6/6 sm:w-3/6 ">
               <div className="mt-3 mx-3">
                 <form
