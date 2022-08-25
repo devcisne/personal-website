@@ -11,10 +11,10 @@ const sendForm = (data) => {
 
     console.log(response.data)
     if (response.data.status === 'success') {
-      alert("Message Sent.");
+      console.log("Message Sent.");
       this.resetForm()
     } else if (response.data.status === 'fail') {
-      alert("Message failed to send.")
+      console.log("Message failed to send.")
     }
   })
 }

@@ -29,15 +29,16 @@ const Gallery = () => {
   return (
     <>
       <NavBar />
-      <div className="h-[80vh]  bg-[#ffffff] border-t border-gray-900 ">
+      <div className="min-h-[85vh] bg-[#ffffff] border-t border-gray-900 ">
         <div className="container py-10 px-4 text-justify w-full mx-auto">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Gallery</h1>
           <div className="mt-3">
             <ImageGallery items={images} autoPlay="true" slideInterval="5000" />
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
+
     </>
   );
 };
