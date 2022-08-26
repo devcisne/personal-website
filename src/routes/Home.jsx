@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 
 const Home = () => {
-  useEffect(() => window.renderTagCloud())
+  useEffect(() => window.renderTagCloud(), [])
 
   return (
     <>
-      <NavBar />
       <div className="h-screen  bg-[#ffffff] border-t border-gray-900 ">
         <div className="container mx-auto px-4 my-11 border rounded-md bg-brick-pattern h-5/6 flex sm:flex-row flex-col">
           <div className="my-auto flex-auto w-full sm:w-4/6 ">
@@ -70,7 +67,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

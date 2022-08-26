@@ -159,7 +159,6 @@ const About = () => {
 
   return (
     <>
-      <NavBar />
       <div className="  bg-[#ffffff] border-t border-gray-900 ">
         <div className="container py-10 px-4 text-justify w-full mx-auto ">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">About me</h1>
@@ -192,7 +191,6 @@ const About = () => {
           ></img>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

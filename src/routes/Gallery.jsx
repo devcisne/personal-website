@@ -28,7 +28,6 @@ const Gallery = () => {
   ];
   return (
     <>
-      <NavBar />
       <div className="min-h-[85vh] bg-[#ffffff] border-t border-gray-900 ">
         <div className="container py-10 px-4 text-justify w-full mx-auto">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Gallery</h1>
@@ -37,8 +36,6 @@ const Gallery = () => {
           </div>
         </div>
       </div>
-      <Footer />
-
     </>
   );
 };

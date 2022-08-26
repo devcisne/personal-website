@@ -30,7 +30,6 @@ const Contact = () => {
 
   return (
     <>
-      <NavBar />
       <div className="  bg-[#ffffff] border-t border-gray-900 ">
         <div className=" py-10 px-10 h-full">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Contact</h1>
@@ -151,7 +150,6 @@ const Contact = () => {
         </div>
 
       </div>
-      <Footer />
 
     </>
   );
