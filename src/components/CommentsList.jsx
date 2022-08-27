@@ -11,6 +11,7 @@ const CommentsList = ({ comments }) => (
         <p>"{comment.text}"</p>
       </div>
     ))}
+    {comments.length===0 && <div className="mb-6  border-b-4 border-b-black"> <p>There are no comments on this article yet, be the first!</p></div>}
   </>
 );
 

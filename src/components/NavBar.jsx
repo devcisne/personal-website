@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { CgClose, CgMenu } from "react-icons/cg";
 import { Link, useLocation } from "react-router-dom";
 function NavBar() {
@@ -18,7 +18,7 @@ function NavBar() {
   }
 
   const [open, setOpen] = useState(false);
-
+  useEffect(()=>{setOpen(false)},[location])
 
   return (
     <div className="bg-gray-800">

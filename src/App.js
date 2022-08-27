@@ -8,7 +8,7 @@ import Home from "./routes/Home";
 import Contact from "./routes/Contact";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import ArticlePage from "./components/ArticlePage";
+import BlogEntry from "./routes/BlogEntry";
 
 function App() {
   return (
@@ -16,20 +16,15 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} exact />
-        <Route path="about" element={<About />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="portfolio" element={<Portfolio />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="/blog/:article" element={<ArticlePage />} />
-
-        <Route path="contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:blogID" element={<BlogEntry />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </>
-    // <NavBar></NavBar>
-    // <div className="App">
-    //   {/* <MyComp/> */}
-    // </div>
   );
 }
 
