@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import CaptchaImplementation from "./CaptchaImplementation";
 
 const AddCommentForm = ({ entryID, setEntryData }) => {
+  const [isDisabled, setDisabled] = useState(true)
+
   const {
     register,
     handleSubmit,
@@ -18,7 +21,6 @@ const AddCommentForm = ({ entryID, setEntryData }) => {
       data,
     }).then((response) => {
       console.log(response);
-
       if (response.status === 200) {
 
         setEntryData(response.data);
@@ -86,11 +88,13 @@ const AddCommentForm = ({ entryID, setEntryData }) => {
 
         <div className="place-content-center  flex items-center">
           <button
+            disabled={isDisabled}
             type="submit"
-            className="inline-flex justify-center mt-2 py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-[#007EA7] hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--[#00A8E8] "
+            className="inline-flex justify-center mt-2 py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-[#007EA7] hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--[#00A8E8] disabled:opacity-75 disabled:bg-slate-500 mx-5"
           >
             Add Comment
           </button>
+          <CaptchaImplementation setDisabled={setDisabled} />
         </div>
       </form>
     </div>

@@ -160,13 +160,13 @@ const About = () => {
   return (
     <>
       <div className="  bg-[#ffffff] border-t border-gray-900 ">
-        <div className="container py-10 px-4 text-justify w-full mx-auto ">
+        <div className="container py-10 px-10 text-justify w-full mx-auto ">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">About me</h1>
           <br />
           <img
             src="/images/profilePic.jpg"
             alt="website profile"
-            className="sm:h-[70vh] h-[30vh] sm:float-right sm:ml-4 ml-3 rounded-xl outline-double outline-[#007EA7] hidden sm:inline "
+            className="sm:h-[70vh] h-[30vh] sm:float-right sm:ml-4 ml-5 rounded-xl outline-double outline-[#007EA7] hidden sm:inline "
           ></img>
           <p>
             I am a young professional with a passion for web technologies, cloud

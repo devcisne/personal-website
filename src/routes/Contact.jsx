@@ -1,32 +1,33 @@
-import React from "react";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-
-const sendForm = (data) => {
-  console.log(data)
-  axios({ method: "POST", url: "http://localhost:5000/sendMail", data }).then((response) => {
-    console.log(response)
-
-    console.log(response.data)
-    if (response.data.status === 'success') {
-      console.log("Message Sent.");
-      this.resetForm()
-    } else if (response.data.status === 'fail') {
-      console.log("Message failed to send.")
-    }
-  })
-}
+// import ReCAPTCHA from "react-google-recaptcha"
+import CaptchaImplementation from "../components/CaptchaImplementation";
 
 const Contact = () => {
 
+  // const captchaRef = useRef(null)
+  const [isDisabled, setDisabled] = useState(true)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({ defaultValues: { senderName: "", email: "", subject: "", msg: "" } });
+
+  const sendForm = (data) => {
+    console.log(data)
+    axios({ method: "POST", url: "http://localhost:5000/api/sendMail", data }).then((response) => {
+      console.log(response)
+      if (response.status === 200) {
+        console.log("Contact form submitted successfully");
+        reset()
+      }
+    }).catch((error) => {
+      console.log(`Message failed to send. error:`, error);
+    });
+  }
 
   return (
     <>
@@ -131,11 +132,13 @@ const Contact = () => {
                   <div className="place-content-center  flex items-center">
 
                     <button
+                      disabled={isDisabled}
                       type="submit"
-                      className="inline-flex justify-center mt-2 py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-[#007EA7] hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--[#00A8E8] "
+                      className="inline-flex justify-center mt-2 py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-[#007EA7] hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--[#00A8E8] disabled:opacity-75 disabled:bg-slate-500 mx-5"
                     >
                       Submit
                     </button>
+                    <CaptchaImplementation setDisabled={setDisabled} />
                   </div>
 
                 </form>
