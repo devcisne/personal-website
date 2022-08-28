@@ -1,0 +1,48 @@
+// MongoDB Playground
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+const database = 'personalwebsite';
+const collection = 'blogEntries';
+
+// The current database to use.
+use(database);
+db.blogEntries.countDocuments()
+// Create a new collection.
+db.createCollection(collection);
+
+db.blogEntries.insertOne({ urlID: 'entry3', title: 'Blog entry 3' })
+
+db.blogEntries.deleteMany({})
+db.blogEntries.find({})
+db.blogEntries.findOne({entryID:"entry1"})
+db.serverCmdLineOpts()
+// The prototype form to create a regular collection:
+/* db.createCollection( <name>,
+  {
+    capped: <boolean>,
+    autoIndexId: <boolean>,
+    size: <number>,
+    max: <number>,
+    storageEngine: <document>,
+    validator: <document>,
+    validationLevel: <string>,
+    validationAction: <string>,
+    indexOptionDefaults: <document>,
+    viewOn: <string>,
+    pipeline: <pipeline>,
+    collation: <document>,
+    writeConcern: <document>
+  }
+) */
+
+// The prototype form to create a time-series collection:
+/* db.createCollection( <name>,
+  {
+    timeseries: {
+      timeField: <string>,
+      metaField: <string>,
+      granularity: <string>
+    },
+    expireAfterSeconds: <number>
+  }
+) */
