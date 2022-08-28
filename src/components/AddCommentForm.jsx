@@ -1,41 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-const AddCommentForm = ({ articleName, setArticleInfo }) => {
+const AddCommentForm = ({ entryID, setEntryData }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({ defaultValues: { userName: "", commentContent: "" } });
 
-  //   const [username, setUsername] = useState("");
-  //   const [commentText, setCommentText] = useState("");
   const addComment = (data) => {
     console.log(data);
-    // axios({
-    //   method: "POST",
-    //   url: `http://localhost:5000//api/articles/${articleName}/add-comment`,
-    //   data,
-    // }).then((response) => {
-    //   console.log(response);
+    axios({
+      method: "POST",
+      url: `http://localhost:5000/api/blogEntries/${entryID}/add-comment`,
+      data,
+    }).then((response) => {
+      console.log(response);
 
-    //   console.log(response.data);
-    //   if (response.data.status === "success") {
-    //     console.log("Message Sent.");
-    //     setArticleInfo(response.data);
-    //     this.resetForm();
-    //   } else if (response.data.status === "fail") {
-    //     console.log("Message failed to send.");
-    //   }
-    // });
+      if (response.status === 200) {
+
+        setEntryData(response.data);
+        reset();
+      }
+    }).catch((error) => {
+      console.log(`Request failed. error:`, error);
+    });
   };
-
-  // const body = addComment;
-  // setArticleInfo(body);
-  // setUsername("");
-  // setCommentText("");
-  //   };
 
   return (
     <div id="add-comment-form">
@@ -59,9 +51,8 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
               }
             })}
             placeholder="user name..."
-            className={`ml-3 mt-1 focus:ring-[#00A8E8] focus:border-[#00A8E8] shadow-sm sm:text-sm border-gray-300 rounded-md ${
-              errors.userName ? "border-pink-500 text-pink-600" : ""
-            }
+            className={`ml-3 mt-1 focus:ring-[#00A8E8] focus:border-[#00A8E8] shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.userName ? "border-pink-500 text-pink-600" : ""
+              }
             `}
           />
           <p className="text-pink-600">{errors.userName?.message}</p>
@@ -84,9 +75,8 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
             })}
             name="commentContent"
             placeholder="Comment..."
-            className={`mt-1 focus:ring-[#00A8E8] focus:border-[#00A8E8] block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${
-              errors.commentContent ? "border-pink-500 text-pink-600" : ""
-            } 
+            className={`mt-1 focus:ring-[#00A8E8] focus:border-[#00A8E8] block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.commentContent ? "border-pink-500 text-pink-600" : ""
+              } 
       `}
             rows="8"
             style={{ resize: "none" }}

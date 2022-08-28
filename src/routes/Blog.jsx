@@ -1,14 +1,41 @@
-import React from "react";
-import blogEntries from "../blog-entries-temp";
+import React, { useState, useEffect } from "react";
 import BlogEntryList from "../components/BlogEntryList";
+import axios from "axios";
+import { CgSpinner } from "react-icons/cg"
 
 const Blog = () => {
+  const [isLoading, setIsLoading] = useState(true)
+  const [blogEntries, setBlogEntries] = useState([])
+
+  useEffect(() => {
+    setIsLoading(true)
+
+    const fetchData = async () => {
+      return await axios({
+        method: "GET",
+        url: `http://localhost:5000/api/blogEntries`,
+      })
+    }
+    fetchData().then((response) => {
+      console.log("response", response)
+      if (response.status === 200) {
+        console.log("Request was successfull.");
+        setBlogEntries(response.data)
+        setIsLoading(false)
+      }
+    }).catch((error) => {
+      console.log(`Request failed. error:`, error);
+    });
+  }, [])
+
   return (
     <>
       <div className="min-h-[85vh] bg-[#ffffff] border-t border-gray-900 ">
         <div className=" py-10 px-4">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Blog</h1>
-          <BlogEntryList blogEntries={blogEntries} />
+
+          {!isLoading ? (<BlogEntryList blogEntries={blogEntries} />
+          ) : (<CgSpinner className="animate-spin text-9xl mx-auto" />)}
         </div>
       </div>
     </>
