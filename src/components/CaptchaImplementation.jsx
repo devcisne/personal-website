@@ -1,14 +1,17 @@
-import React from 'react'
+import React,{useRef, useState} from 'react'
 import ReCAPTCHA from "react-google-recaptcha"
 import axios from "axios";
 
 const CaptchaImplementation = ({ setDisabled }) => {
+      const captchaRef = useRef(null)
+
+
     const captchaExpired = (setDisabled) => {
         console.log("the captcha has expired")
         setDisabled(true)
     }
 
-    const verifyToken = (token, setDisabled) => {
+    const verifyToken = (token, setDisabled,captchaRef) => {
         console.log("verify this", token)
         // console.log("this", captchaRef)
 
@@ -19,8 +22,10 @@ const CaptchaImplementation = ({ setDisabled }) => {
                 console.log("token verified successfully!");
                 if (response.data.success) {
                     setDisabled(false)
+                }else{
+                captchaRef.current.reset();
+                console.log("failed token")
                 }
-                // captchaRef.current.reset();
             }
         }).catch((error) => {
             console.log("Error sending token for verification:", error);
@@ -31,10 +36,11 @@ const CaptchaImplementation = ({ setDisabled }) => {
         <>
             <ReCAPTCHA
                 sitekey={process.env.REACT_APP_SITE_KEY}
-                // ref={captchaRef}
-                onChange={(token) => verifyToken(token, setDisabled)}
+                ref={captchaRef}
+                onChange={(token) => verifyToken(token, setDisabled,captchaRef)}
                 onExpired={() => captchaExpired(setDisabled)}
             />
+
         </>
 
     )

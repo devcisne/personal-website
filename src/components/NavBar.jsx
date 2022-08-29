@@ -9,7 +9,7 @@ function NavBar() {
     { name: "About me", route: "/about" },
     { name: "Gallery", route: "/gallery" },
     { name: "Blog", route: "/blog" },
-    { name: "Portfolio", route: "/portfolio" },
+    // { name: "Portfolio", route: "/portfolio" },
     { name: "Contact", route: "/contact" }
   ];
 

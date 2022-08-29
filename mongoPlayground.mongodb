@@ -10,7 +10,7 @@ db.blogEntries.countDocuments()
 // Create a new collection.
 db.createCollection(collection);
 
-db.blogEntries.insertOne({ urlID: 'entry3', title: 'Blog entry 3' })
+db.blogEntries.insertOne({ entryID: 'entry3', title: 'Blog entry 3' })
 
 db.blogEntries.deleteMany({})
 db.blogEntries.find({})

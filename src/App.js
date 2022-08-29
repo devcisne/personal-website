@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} exact />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/portfolio" element={<Portfolio />} />
+        {/* <Route path="/portfolio" element={<Portfolio />} /> */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:blogID" element={<BlogEntry />} />
         <Route path="/contact" element={<Contact />} />
