@@ -86,11 +86,11 @@ const AddCommentForm = ({ entryID, setEntryData }) => {
           <p className="text-pink-600">{errors.commentContent?.message}</p>
         </div>
 
-        <div className="place-content-center  flex items-center">
+        <div className="place-content-center  flex items-center flex-col md:flex-row">
           <button
             disabled={isDisabled}
             type="submit"
-            className="inline-flex justify-center mt-2 py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-[#007EA7] hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--[#00A8E8] disabled:opacity-75 disabled:bg-slate-500 mx-5"
+            className="inline-flex justify-center my-2 py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-[#007EA7] hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--[#00A8E8] disabled:opacity-75 disabled:bg-slate-500 mx-5"
           >
             Add Comment
           </button>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const Home = () => {
-  useEffect(() => window.renderTagCloud(), [])
+  useEffect(() => window.renderTagCloud(), []);
 
   return (
     <>
