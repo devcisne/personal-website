@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 
 const Home = () => {
-  useEffect(() => window.renderTagCloud(), []);
+  useEffect(() => window.renderTagCloud(), [])
 
   return (
     <>
       <div className="h-screen  bg-[#ffffff] border-t border-gray-900 ">
-        <div className="container mx-auto px-4 my-11 border rounded-md bg-brick-pattern h-5/6 flex sm:flex-row flex-col">
+        <div className="w-[95vw] mx-auto px-4 mt-11 mb-0 border rounded-md bg-brick-pattern h-5/6 flex sm:flex-row flex-col">
           <div className="my-auto flex-auto w-full sm:w-4/6 ">
             <p className="text-xl font-semibold text-[#00A8E8] ">
               Hi, my name is
