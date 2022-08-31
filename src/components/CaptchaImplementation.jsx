@@ -3,7 +3,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 
 const CaptchaImplementation = ({ setDisabled }) => {
-    console.log("debugging site key",process.env.REACT_APP_SITE_KEY)
   const captchaRef = useRef(null);
   const [isTokenFailed, setTokenFailed] = useState(false);
 
