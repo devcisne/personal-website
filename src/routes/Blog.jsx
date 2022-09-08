@@ -4,7 +4,7 @@ import axios from "axios";
 import { CgSpinner } from "react-icons/cg"
 
 const Blog = () => {
-  console.log(`${process.env.REACT_APP_API_ENDPOINT}/api/blogEntries`)
+  // console.log(`${process.env.REACT_APP_API_ENDPOINT}/api/blogEntries`)
   const [isLoading, setIsLoading] = useState(true)
   const [blogEntries, setBlogEntries] = useState([])
 
@@ -18,7 +18,7 @@ const Blog = () => {
       })
     }
     fetchData().then((response) => {
-      console.log("response", response)
+      // console.log("response", response)
       if (response.status === 200) {
         // console.log("Request was successfull.");
         setBlogEntries(response.data)
