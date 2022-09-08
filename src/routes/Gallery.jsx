@@ -1,6 +1,4 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import ImageGallery from "react-image-gallery";
 
 const Gallery = () => {
@@ -28,11 +26,11 @@ const Gallery = () => {
   ];
   return (
     <>
-      <div className="min-h-[85vh] bg-[#ffffff] border-t border-gray-900 ">
-        <div className="container py-10 px-4 text-justify w-full mx-auto">
+      <div className="min-h-[85vh] bg-[#ffffff] border-t border-[#003459] ">
+        <div className="py-10 px-10 text-justify w-full mx-auto">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Gallery</h1>
           <div className="mt-3">
-            <ImageGallery items={images} autoPlay="true" slideInterval="5000" />
+            <ImageGallery items={images} autoPlay="true" slideInterval="5000"/>
           </div>
         </div>
       </div>

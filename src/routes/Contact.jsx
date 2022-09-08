@@ -6,6 +6,7 @@ import CaptchaImplementation from "../components/CaptchaImplementation";
 const Contact = () => {
   // const captchaRef = useRef(null)
   const [isDisabled, setDisabled] = useState(true);
+  const [isSuccess, setSuccess] = useState(false);
 
   const {
     register,
@@ -17,12 +18,21 @@ const Contact = () => {
   });
 
   const sendForm = (data) => {
-    console.log(data);
-    axios({ method: "POST", url: "http://localhost:5000/api/sendMail", data })
+    // console.log(data);
+    const postData = async () => {
+      return await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_API_ENDPOINT}/api/sendMail`,
+        data,
+      });
+    };
+
+    postData()
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log("Contact form submitted successfully");
+          // console.log("Contact form submitted successfully");
+          setSuccess(true);
           reset();
         }
       })
@@ -33,7 +43,7 @@ const Contact = () => {
 
   return (
     <>
-      <div className="  bg-[#ffffff] border-t border-gray-900 ">
+      <div className="  bg-[#ffffff] border-t border-[#003459] ">
         <div className=" py-10 px-10 h-full">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Contact</h1>
 
@@ -90,7 +100,6 @@ const Contact = () => {
                     />
                     <p className="text-pink-600">{errors.email?.message}</p>
                   </div>
-
                   <div className="mb-2">
                     <label
                       htmlFor="subject"
@@ -116,7 +125,6 @@ const Contact = () => {
                     />
                     <p className="text-pink-600">{errors.subject?.message}</p>
                   </div>
-
                   <div className="mb-2">
                     <label
                       htmlFor="msg"
@@ -144,6 +152,11 @@ const Contact = () => {
                     />
                     <p className="text-pink-600">{errors.msg?.message}</p>
                   </div>
+                  {isSuccess && (
+                    <p className="text-[#00A8E8] text-center py-2">
+                      Message sent successfully!
+                    </p>
+                  )}
                   <div className="place-content-center  flex items-center flex-col md:flex-row">
                     <button
                       disabled={isDisabled}
