@@ -18,7 +18,7 @@ const Blog = () => {
       })
     }
     fetchData().then((response) => {
-      // console.log("response", response)
+      console.log("response", response.headers)
       if (response.status === 200) {
         // console.log("Request was successfull.");
         setBlogEntries(response.data)
