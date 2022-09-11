@@ -45,6 +45,7 @@ const BlogEntry = () => {
 
     })
 
+    console.log(resultHTML)
     return resultHTML
   }
 
