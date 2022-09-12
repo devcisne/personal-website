@@ -49,6 +49,7 @@ const BlogEntry = () => {
     return resultHTML
   }
 
+
   return (
     <>
       <div className="  bg-[#ffffff] border-t border-[#003459] ">
@@ -61,7 +62,11 @@ const BlogEntry = () => {
                 <h2>Article published on: {entryData.pubDate}</h2>
                 <br />
               
-                <div className="text-justify mb-3">{HTMLReactParser(insertImagesIntoHTML(entryData.content,entryData.imageArray))}</div>
+                <div className="text-justify mb-3"
+                 dangerouslySetInnerHTML={{ __html: insertImagesIntoHTML(entryData.content,entryData.imageArray) }}
+                >
+                  {/* {HTMLReactParser(insertImagesIntoHTML(entryData.content,entryData.imageArray))} */}
+                </div>
                 {/* <div className="text-justify mb-3" dangerouslySetInnerHTML={createMarkup(entryData.content)}></div> */}
 
                 <CommentsList comments={entryData.comments} />
