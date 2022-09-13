@@ -77,9 +77,9 @@ function NavBar() {
               className="bg-[#003459] p-1 rounded text-gray-400 hover:text-white ring-2  ring-gray-400 hover:ring-white"
             >
               <a
-                href="/documents/diegoCisnerosCV.pdf"
+                href={process.env.PUBLIC_URL+"/documents/diegoCisnerosCV.pdf"}
                 target="_blank"
-                className="mx-2"
+                className="mx-2" rel="noreferrer"
               >
                 Resume
               </a>
