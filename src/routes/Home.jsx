@@ -5,7 +5,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="h-screen  bg-[#ffffff] border-t border-gray-900 ">
+      <div className="h-screen  bg-[#ffffff] border-t border-[#003459] ">
         <div className="w-[95vw] mx-auto px-4 mt-11 mb-0 border rounded-md bg-brick-pattern h-5/6 flex sm:flex-row flex-col">
           <div className="my-auto flex-auto w-full sm:w-4/6 ">
             <p className="text-xl font-semibold text-[#00A8E8] ">

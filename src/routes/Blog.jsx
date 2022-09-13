@@ -4,6 +4,7 @@ import axios from "axios";
 import { CgSpinner } from "react-icons/cg"
 
 const Blog = () => {
+  // console.log(`${process.env.REACT_APP_API_ENDPOINT}/api/blogEntries`)
   const [isLoading, setIsLoading] = useState(true)
   const [blogEntries, setBlogEntries] = useState([])
 
@@ -13,13 +14,13 @@ const Blog = () => {
     const fetchData = async () => {
       return await axios({
         method: "GET",
-        url: `http://localhost:5000/api/blogEntries`,
+        url: `${process.env.REACT_APP_API_ENDPOINT}/api/blogEntries`,
       })
     }
     fetchData().then((response) => {
-      console.log("response", response)
+      // console.log("response", response.headers)
       if (response.status === 200) {
-        console.log("Request was successfull.");
+        // console.log("Request was successfull.");
         setBlogEntries(response.data)
         setIsLoading(false)
       }
@@ -30,8 +31,8 @@ const Blog = () => {
 
   return (
     <>
-      <div className="min-h-[85vh] bg-[#ffffff] border-t border-gray-900 ">
-        <div className=" py-10 px-4">
+      <div className="min-h-[85vh] bg-[#ffffff] border-t border-[#003459] ">
+        <div className="  py-10 px-10 text-justify w-full mx-auto ">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Blog</h1>
 
           {!isLoading ? (<BlogEntryList blogEntries={blogEntries} />

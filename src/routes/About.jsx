@@ -1,6 +1,4 @@
 import React, { Fragment, useState } from "react";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import HTMLReactParser from "html-react-parser";
 import {
   IoIosArrowDroprightCircle,
@@ -19,7 +17,9 @@ const CollapsableSection = ({ title, text }) => {
         {isCollapsed && (
           <IoIosArrowDropdownCircle className="inline mr-2" color="#007EA7" />
         )}
-        <h1 className="text-l font-semibold text-[#007EA7] inline hover:underline hover:decoration-[#00A8E8]">{title}</h1>
+        <h1 className="text-l font-semibold text-[#007EA7] inline hover:underline hover:decoration-[#00A8E8]">
+          {title}
+        </h1>
       </button>
       {!isCollapsed && (
         <>
@@ -30,7 +30,7 @@ const CollapsableSection = ({ title, text }) => {
       {isCollapsed && (
         <div>
           {text.map((paragraph) => (
-            <Fragment key={(Math.random() + 1).toString(36).substring(2, 5)} >
+            <Fragment key={(Math.random() + 1).toString(36).substring(2, 5)}>
               <p>{HTMLReactParser(paragraph)}</p>
               <br />
             </Fragment>
@@ -159,15 +159,15 @@ const About = () => {
 
   return (
     <>
-      <div className="  bg-[#ffffff] border-t border-gray-900 ">
-        <div className="container py-10 px-10 text-justify w-full mx-auto ">
+      <div className="  bg-[#ffffff] border-t border-[#003459] ">
+        <div className=" py-10 px-10 text-justify w-full mx-auto ">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">About me</h1>
           <br />
           <img
             src="/images/profilePic.jpg"
             alt="website profile"
             className="sm:h-[70vh] h-[30vh] sm:float-right sm:ml-4 ml-5 rounded-xl outline-double outline-[#007EA7] hidden sm:inline "
-          ></img>
+          />
           <p>
             I am a young professional with a passion for web technologies, cloud
             services and information security. Seeking positions that match
@@ -188,7 +188,7 @@ const About = () => {
             src="/images/profilePic.jpg"
             alt="website profile"
             className="h-[45vh] mx-auto mt-3 rounded-xl outline-double outline-[#007EA7] sm:hidden"
-          ></img>
+          />
         </div>
       </div>
     </>

@@ -7,30 +7,34 @@ const CaptchaImplementation = ({ setDisabled }) => {
   const [isTokenFailed, setTokenFailed] = useState(false);
 
   const captchaExpired = (setDisabled) => {
-    console.log("the captcha has expired");
+    // console.log("the captcha has expired");
     setDisabled(true);
   };
 
   const verifyToken = (token, setDisabled, captchaRef) => {
-    console.log("verify this", token);
+    // console.log("verify this", token);
 
-    axios({
-      method: "POST",
-      url: "http://localhost:5000/api/verifyCaptcha",
-      data: { token},
-    })
+    const postData = async () => {
+      return await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_API_ENDPOINT}/api/verifyCaptcha`,
+        data: { token },
+      });
+    };
+
+    postData()
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log("verification result", response.data);
-          console.log("token verified successfully!");
+          // console.log("verification result", response.data);
+          // console.log("token verified successfully!");
           if (response.data.success) {
             setDisabled(false);
             setTokenFailed(false);
           } else {
             captchaRef.current.reset();
             setTokenFailed(true);
-            console.log("failed token");
+            // console.log("failed token");
           }
         }
       })

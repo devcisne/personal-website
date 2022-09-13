@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CgClose, CgMenu } from "react-icons/cg";
 import { Link, useLocation } from "react-router-dom";
 function NavBar() {
@@ -10,7 +10,7 @@ function NavBar() {
     { name: "Gallery", route: "/gallery" },
     { name: "Blog", route: "/blog" },
     // { name: "Portfolio", route: "/portfolio" },
-    { name: "Contact", route: "/contact" }
+    { name: "Contact", route: "/contact" },
   ];
 
   function classNames(...classes) {
@@ -18,15 +18,20 @@ function NavBar() {
   }
 
   const [open, setOpen] = useState(false);
-  useEffect(()=>{setOpen(false)},[location])
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
 
   return (
-    <div className="bg-gray-800">
+    <div className="bg-[#003459]">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
             {/* Mobile menu button*/}
-            <button onClick={()=>setOpen(!open)} className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            <button
+              onClick={() => setOpen(!open)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            >
               <span className="sr-only">Open main menu</span>
               {open ? (
                 <CgClose className="block h-6 w-6" />
@@ -38,7 +43,10 @@ function NavBar() {
           {/* nav items */}
           <div className="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
             <div className="flex-shrink-0 flex items-center">
-              <Link to={"/"} className="group transition duration-300 font-mono text-white">
+              <Link
+                to={"/"}
+                className="group transition duration-300 font-mono text-white"
+              >
                 DiegoCisneros.dev
                 <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
               </Link>
@@ -52,8 +60,8 @@ function NavBar() {
                     to={item.route}
                     className={classNames(
                       location.pathname === item.route
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        ? "bg-[#002836] text-white"
+                        : "text-gray-300 hover:bg-[#002836] hover:text-white",
                       "px-3 py-2 rounded-md text-sm font-medium"
                     )}
                   >
@@ -64,13 +72,19 @@ function NavBar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="bg-gray-800 p-1 rounded text-gray-400 hover:text-white ring-2  ring-gray-400 hover:ring-white"
-                >
-          <a href = "/documents/diegoCisnerosCV.pdf" target = "_blank" className="mx-2">Resume</a>
-                </button>
-              </div>
+            <button
+              type="button"
+              className="bg-[#003459] p-1 rounded text-gray-400 hover:text-white ring-2  ring-gray-400 hover:ring-white"
+            >
+              <a
+                href="https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/documents/diegoCisnerosCV.pdf"
+                target="_blank"
+                className="mx-2" rel="noreferrer"
+              >
+                Resume
+              </a>
+            </button>
+          </div>
         </div>
       </div>
       <div className="md:hidden">
@@ -82,8 +96,8 @@ function NavBar() {
                 to={item.route}
                 className={classNames(
                   location.pathname === item.route
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    ? "bg-[#002836] text-white"
+                    : "text-gray-300 hover:bg-[#002836] hover:text-white",
                   "px-3 py-2 rounded-md text-sm font-medium"
                 )}
               >
