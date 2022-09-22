@@ -4,23 +4,23 @@ import ImageGallery from "react-image-gallery";
 const Gallery = () => {
   const images = [
     {
-      original: "/images/bannerPic1.jpg",
-      thumbnail: "/images/bannerPic1.jpg",
+      original: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic1.jpg",
+      thumbnail: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic1.jpg",
       originalAlt: "gallery pic 1",
     },
     {
-      original: "/images/bannerPic2.jpg",
-      thumbnail: "/images/bannerPic2.jpg",
+      original: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic2.jpg",
+      thumbnail: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic2.jpg",
       originalAlt: "gallery pic 2",
     },
     {
-      original: "/images/bannerPic3.jpg",
-      thumbnail: "/images/bannerPic3.jpg",
+      original: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic3.jpg",
+      thumbnail: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic3.jpg",
       originalAlt: "gallery pic 3",
     },
     {
-      original: "/images/bannerPic4.jpg",
-      thumbnail: "/images/bannerPic4.jpg",
+      original: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic4.jpg",
+      thumbnail: "https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/bannerPic4.jpg",
       originalAlt: "gallery pic 4",
     },
   ];

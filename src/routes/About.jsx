@@ -164,7 +164,7 @@ const About = () => {
           <h1 className="text-2xl font-semibold text-[#007EA7] ">About me</h1>
           <br />
           <img
-            src="/images/profilePic.jpg"
+            src="https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/profilePic.jpg"
             alt="website profile"
             className="sm:h-[70vh] h-[30vh] sm:float-right sm:ml-4 ml-5 rounded-xl outline-double outline-[#007EA7] hidden sm:inline "
           />
@@ -185,7 +185,7 @@ const About = () => {
           <CollapsableSection title={"Career"} text={careerTextArray} />
 
           <img
-            src="/images/profilePic.jpg"
+            src="https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/images/profilePic.jpg"
             alt="website profile"
             className="h-[45vh] mx-auto mt-3 rounded-xl outline-double outline-[#007EA7] sm:hidden"
           />
