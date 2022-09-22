@@ -15,31 +15,28 @@ const Newsletter = () => {
   });
 
   const sendForm = (data) => {
-    console.log(data);
-    reset();
-    // const postData = async () => {
-    //   return await axios({
-    //     method: "POST",
-    //     url: `${process.env.REACT_APP_API_ENDPOINT}/api/sendMail`,
-    //     data,
-    //   });
-    // };
+    const postData = async () => {
+      return await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_API_ENDPOINT}/api/registerNewsletterEmail`,
+        data,
+      });
+    };
 
-    // postData()
-    //   .then((response) => {
-    //     // console.log(response);
-    //     if (response.status === 200) {
-    //       // console.log("Contact form submitted successfully");
-    //       setSuccess(true);
-    //       reset();
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(`Message failed to send. error:`, error);
-    //   });
+    postData()
+      .then((response) => {
+        // console.log(response);
+        if (response.status === 200) {
+          // console.log("newsletter sign up form submitted successfully");
+          setSuccess(true);
+          reset();
+          setTimeout(() => setSuccess(false), 10000);
+        }
+      })
+      .catch((error) => {
+        console.log(`Message failed to send. error:`, error);
+      });
   };
-
-
 
   return (
     <div className="bg-[#003459]">
@@ -53,8 +50,8 @@ const Newsletter = () => {
           </h2>
           <p className="mt-3 max-w-3xl text-lg leading-6 text-gray-300">
             Only the best programming memes, tech news &amp; tips carefully
-            selected from the most obscure subreddits and the depths of twitter
-            will be delivered.
+            selected from the most interesting subreddits and the depths of
+            twitter will be delivered.
           </p>
         </div>
         <div className="mt-8 lg:mt-0 lg:ml-8">
@@ -75,7 +72,9 @@ const Newsletter = () => {
               type="email"
               autoComplete="email"
               className={`w-full rounded-md border border-transparent px-5 py-3 placeholder-gray-500 focus:border-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 sm:max-w-xs ${
-                errors.email ? "border-pink-500 text-pink-600 focus:border-pink-500 focus:ring-pink-500" : ""
+                errors.email
+                  ? "border-pink-500 text-pink-600 focus:border-pink-500 focus:ring-pink-500"
+                  : ""
               } `}
               placeholder="Enter your email"
             />
@@ -88,13 +87,17 @@ const Newsletter = () => {
               </button>
             </div>
           </form>
-          <p className="mt-3 text-sm text-pink-600">
+          <p className="mt-3 text-sm text-pink-600">{errors.email?.message}</p>
+          {isSuccess && (
+            <p className="mt-3 text-sm font-bold text-[#4897bf]">
               {/* We care about the protection of your data. Read our{' '}
               <a href="#" className="font-medium text-white underline">
                 Privacy Policy.
               </a> */}
-              {errors.email?.message}
+              Thanks for your interest in the newsletter. Please check your
+              inbox to complete the subscription process.
             </p>
+          )}
         </div>
       </div>
     </div>
