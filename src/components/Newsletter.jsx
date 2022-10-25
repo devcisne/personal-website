@@ -94,7 +94,7 @@ const Newsletter = () => {
               <a href="#" className="font-medium text-white underline">
                 Privacy Policy.
               </a> */}
-              Thanks for your interest in the newsletter. Please check your
+              Thanks for your interest in the newsletter.<br/> Please check your
               inbox to complete the subscription process.
             </p>
           )}
