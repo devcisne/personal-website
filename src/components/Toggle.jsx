@@ -7,9 +7,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Toggle = () => {
+const Toggle = ({className}) => {
   const { setDarkModeEnabled } = useContext(ThemeContext);
-
+  const newClassName=className
   const [enabled, setEnabled] = useState(false);
   const toggleFunction = (value) => {
     console.log("value", value);
@@ -22,6 +22,7 @@ const Toggle = () => {
   };
 
   return (
+    <div className={`${newClassName}`}>
     <Switch
       checked={enabled}
       onChange={toggleFunction}
@@ -61,6 +62,8 @@ const Toggle = () => {
         </span>
       </span>
     </Switch>
+    </div>
+
   );
 };
 

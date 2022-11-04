@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CgClose, CgMenu } from "react-icons/cg";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Transition } from "@headlessui/react";
 import Toggle from "./Toggle";
 import { BubblyLink } from "react-bubbly-transitions";
 
@@ -26,24 +27,26 @@ function NavBar() {
   }, [location]);
 
   return (
-    <div className="bg-[#003459]  dark:bg-red-800" id="header">
+    <div className=" dark:bg-red-800" id="header">
       <div
         className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 relative flex items-center justify-between h-16"
         id="headerContent"
       >
         <div
-          className="absolute inset-y-0 left-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0"
+          className="absolute inset-y-0 left-0 flex items-center px-2 sm:static sm:inset-auto  sm:pr-0"
           id="logoSection"
         >
-            <div className="group transition duration-300 font-mono text-white">
-              <BubblyLink to={"/"} colorStart="#00A8E8" duration={900}>
-                DiegoCisneros.dev
-                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
-              </BubblyLink>
-            </div>
+          <div className="group transition duration-300 font-mono text-gray-400">
+            <BubblyLink to={"/"} colorStart="#00A8E8" duration={900}>
+              DiegoCisneros.dev
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
+            </BubblyLink>
+          </div>
         </div>
-        {/* <div className="relative flex items-center justify-between h-16"> */}
-        <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
+        <div
+          className="absolute inset-y-0 right-0 flex items-center md:hidden"
+          id="mobile menu icon"
+        >
           {/* Mobile menu button*/}
           <button
             onClick={() => setOpen(!open)}
@@ -58,17 +61,50 @@ function NavBar() {
           </button>
         </div>
         {/* nav items */}
-        <div className="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
+        {/* big menu */}
+        <div className="hidden md:flex  space-x-2 items-center">
+          {navigation.map((item) => (
+            <div
+              className={classNames(
+                location.pathname === item.route
+                  ? " text-white"
+                  : "text-gray-300  hover:text-white",
+                " py-2 rounded-md text-sm font-medium"
+              )}
+            >
+              <BubblyLink
+                key={item.name}
+                to={item.route}
+                colorStart="#00A8E8"
+                duration={900}
+                // colorEnd=''
+              >
+                {item.name}
+              </BubblyLink>
+              <span className="mx-1">/</span>
+            </div>
+          ))}
+          <Toggle/>
 
-          {/* big menu */}
-          <div className="hidden md:block md:ml-6">
-            <div className="flex space-x-4">
+        </div>
+      </div>
+      <div className="md:hidden">
+          {
+            <Transition  show={open}
+            className="flex flex-col px-2 py-2 space-y-1"          
+            as="div"
+            enter="transition ease-out duration-1000"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-500"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95">
               {navigation.map((item) => (
                 <div
                   className={classNames(
                     location.pathname === item.route
-                      ? "bg-[#002836] text-white"
-                      : "text-gray-300 hover:bg-[#002836] hover:text-white",
+                      ? " text-white"
+                      : "text-gray-300  hover:text-white",
                     "px-3 py-2 rounded-md text-sm font-medium"
                   )}
                 >
@@ -77,68 +113,15 @@ function NavBar() {
                     to={item.route}
                     colorStart="#00A8E8"
                     duration={900}
-                    // colorEnd=''
                   >
                     {item.name}
                   </BubblyLink>
                 </div>
               ))}
-                      <div
-          className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0"
-          id="resumeSection"
-        >
+              <Toggle  className="px-3"/>
 
-          <Toggle />
-        </div>
-
-            </div>
-          </div>
-        </div>
-        <div
-          className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0"
-          id="resumeSection"
-        >
-          <button
-            type="button"
-            className="bg-[#003459] p-1 rounded text-gray-400 hover:text-white ring-2  ring-gray-400 hover:ring-white"
-          >
-            <a
-              href="https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/documents/diegoCisnerosCV.pdf"
-              target="_blank"
-              className="mx-2"
-              rel="noreferrer"
-            >
-              Resume
-            </a>
-          </button>
-          <Toggle />
-        </div>
-        {/* </div> */}
-      </div>
-      <div className="md:hidden">
-        {open && (
-          <div className="flex flex-col px-2 pt-2 pb-3 space-y-1">
-            {navigation.map((item) => (
-              <div
-                className={classNames(
-                  location.pathname === item.route
-                    ? "bg-[#002836] text-white"
-                    : "text-gray-300 hover:bg-[#002836] hover:text-white",
-                  "px-3 py-2 rounded-md text-sm font-medium"
-                )}
-              >
-                <BubblyLink
-                  key={item.name}
-                  to={item.route}
-                  colorStart="#00A8E8"
-                  duration={900}
-                >
-                  {item.name}
-                </BubblyLink>
-              </div>
-            ))}
-          </div>
-        )}
+            </Transition>
+          }
       </div>
     </div>
   );
