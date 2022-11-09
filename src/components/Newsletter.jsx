@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import ThemeContext from "../Context/ThemeContext";
 
 const Newsletter = () => {
   const [isSuccess, setSuccess] = useState(false);
+  const { isDarkModeEnabled } = useContext(ThemeContext);
+
 
   const {
     register,
@@ -39,16 +42,16 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="bg-[#003459]">
+    <div className={ isDarkModeEnabled ? "bg-[url('backgroundDark.svg')]":"bg-[url('backgroundLight.svg')] "}>
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:py-16 lg:px-8">
         <div className="lg:w-0 lg:flex-1">
           <h2
-            className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
+            className="text-4xl font-bold tracking-tight text-black dark:text-white sm:text-4xl"
             id="newsletter-headline"
           >
             Sign up for my newsletter
           </h2>
-          <p className="mt-3 max-w-3xl text-lg leading-6 text-gray-300">
+          <p className="mt-3 max-w-3xl text-xl leading-6 text-black dark:text-white">
             Only the best programming memes, tech news &amp; tips carefully
             selected from the most interesting subreddits and the depths of
             twitter will be delivered.
@@ -81,7 +84,7 @@ const Newsletter = () => {
             <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-[#00A8E8] px-5 py-3 text-base font-medium text-white hover:bg-[#007EA7] focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-offset-2 focus:ring-offset-gray-800"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-[#00A8E8] px-5 py-3 text-base font-medium text-white hover:bg-[#007EA7] dark:bg-[#007EA7] dark:hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-offset-2 focus:ring-offset-gray-800"
               >
                 Sign up
               </button>
@@ -89,7 +92,7 @@ const Newsletter = () => {
           </form>
           <p className="mt-3 text-sm text-pink-600">{errors.email?.message}</p>
           {isSuccess && (
-            <p className="mt-3 text-sm font-bold text-[#4897bf]">
+            <p className="mt-3 text-sm font-bold text-black dark:text-white">
               {/* We care about the protection of your data. Read our{' '}
               <a href="#" className="font-medium text-white underline">
                 Privacy Policy.

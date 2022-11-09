@@ -61,11 +61,11 @@ const BlogEntry = () => {
 
   return (
     <>
-      <div className="  bg-[#ffffff] border-t border-[#003459] ">
+      <div className="bg-white dark:bg-black">
         <div className="container py-10 px-4 text-justify w-full mx-auto ">
           {!isLoading ? (
-            <>
-              <h1 className="text-3xl text-center text-[#003459] font-bold">
+          <>
+              <h1 className="text-3xl text-center text-[#007EA7] font-bold">
                 {entryData.title}
               </h1>
               <br />
@@ -74,12 +74,12 @@ const BlogEntry = () => {
                 <br />
                 {/* Don't even ask about this, i spent the whole weekend trying to figure  out why the css was not being applied despite the fact that it is actually present when you inspect the element, had to do put these hidden elements in order to force the other ones to render correctly. I will eventually fix this */}
                 <ul className="list-disc hidden"></ul>
-                <blockquote className="p-4 my-4 bg-gray-100 border-l-4 border-gray-300 hidden">
-                  <p className="text-l italic font-medium leading-relaxed text-gray-900"></p>
+                <blockquote className="p-4 my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-gray-500 dark:bg-gray-800 hidden">
+                  <p className="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white"></p>
                 </blockquote>
                 {/* end of weird block */}
                 <div
-                  className="text-justify mb-3"
+                  className="text-justify mb-3 text-black dark:text-white"
                   //  dangerouslySetInnerHTML={{ __html:insertImagesIntoHTML(entryData.content,entryData.imageArray)
                   //  }}
                 >

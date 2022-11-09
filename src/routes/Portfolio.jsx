@@ -4,7 +4,7 @@ import React from "react";
 function Portfolio() {
   return (
     <>
-      <div className="h-[80vh]  bg-[#ffffff] border-t border-[#003459] ">
+      <div className="h-[80vh]  bg-[#ffffff]">
         <div className="container py-10 px-4">
           <h1 className="text-2xl font-semibold text-[#007EA7] ">Portfolio</h1>
           <div className="flex flex-wrap justify-center w-full">

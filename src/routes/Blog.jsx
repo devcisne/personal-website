@@ -31,12 +31,12 @@ const Blog = () => {
 
   return (
     <>
-      <div className="min-h-[85vh] bg-[#ffffff] border-t border-[#003459] ">
-        <div className="  py-10 px-10 text-justify w-full mx-auto ">
-          <h1 className="text-2xl font-semibold text-[#007EA7] ">Blog</h1>
+      <div className="min-h-[85vh] bg-white dark:bg-black">
+        <div className="py-10 px-10 text-justify w-full mx-auto ">
+          <h1 className="text-3xl font-semibold text-[#007EA7] ">Blog</h1>
 
           {!isLoading ? (<BlogEntryList blogEntries={blogEntries} />
-          ) : (<CgSpinner className="animate-spin text-9xl mx-auto" />)}
+          ) : (<CgSpinner className="animate-spin text-9xl mx-auto dark:text-white" />)}
         </div>
       </div>
     </>

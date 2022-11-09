@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CgClose, CgMenu } from "react-icons/cg";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Transition } from "@headlessui/react";
+import Toggle from "./Toggle";
+import { BubblyLink } from "react-bubbly-transitions";
+import ThemeContext from "../Context/ThemeContext";
+import "./Navbar.css"
+
+
 function NavBar() {
   const location = useLocation();
+  const { isDarkModeEnabled } = useContext(ThemeContext);
 
   const navigation = [
     { name: "Home", route: "/" },
@@ -23,89 +31,109 @@ function NavBar() {
   }, [location]);
 
   return (
-    <div className="bg-[#003459]">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-16">
-          <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
-            {/* Mobile menu button*/}
-            <button
-              onClick={() => setOpen(!open)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+    <div className=" dark:bg-black" id="header">
+      <div
+        className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 relative flex items-center justify-between h-16"
+        id="headerContent"
+      >
+        <div
+          className="absolute inset-y-0 left-0 flex items-center px-2 sm:static sm:inset-auto  sm:pr-0"
+          id="logoSection"
+        >
+          <div className="group transition duration-300 font-mono text-gray-400 ">
+            <BubblyLink
+              to={"/"}
+              colorStart={isDarkModeEnabled ? "#003459" : "#00A8E8"}
+              duration={900}
             >
-              <span className="sr-only">Open main menu</span>
-              {open ? (
-                <CgClose className="block h-6 w-6" />
-              ) : (
-                <CgMenu className="block h-6 w-6" />
+              DiegoCisneros.dev
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
+            </BubblyLink>
+          </div>
+        </div>
+        <div
+          className="absolute inset-y-0 right-0 flex items-center md:hidden"
+          id="mobile menu icon"
+        >
+          {/* Mobile menu button*/}
+          <button
+            onClick={() => setOpen(!open)}
+            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          >
+            <span className="sr-only">Open main menu</span>
+            {open ? (
+              <CgClose className="block h-6 w-6" />
+            ) : (
+              <CgMenu className="block h-6 w-6" />
+            )}
+          </button>
+        </div>
+        {/* nav items */}
+        {/* big menu */}
+        <div className="hidden md:flex space-x-2 items-center">
+          {navigation.map((item) => (
+            <div
+              className={classNames(
+                location.pathname === item.route
+                  ? " dark:text-white text-black font-semibold"
+                  : "text-gray-400  hover:text-black dark:hover:text-white font-normal hover:font-semibold",
+                " py-2 rounded-md"
               )}
-            </button>
-          </div>
-          {/* nav items */}
-          <div className="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
-            <div className="flex-shrink-0 flex items-center">
-              <Link
-                to={"/"}
-                className="group transition duration-300 font-mono text-white"
-              >
-                DiegoCisneros.dev
-                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
-              </Link>
-            </div>
-            {/* big menu */}
-            <div className="hidden md:block md:ml-6">
-              <div className="flex space-x-4">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.route}
-                    className={classNames(
-                      location.pathname === item.route
-                        ? "bg-[#002836] text-white"
-                        : "text-gray-300 hover:bg-[#002836] hover:text-white",
-                      "px-3 py-2 rounded-md text-sm font-medium"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
-              className="bg-[#003459] p-1 rounded text-gray-400 hover:text-white ring-2  ring-gray-400 hover:ring-white"
             >
-              <a
-                href="https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/documents/diegoCisnerosCV.pdf"
-                target="_blank"
-                className="mx-2" rel="noreferrer"
+              <BubblyLink
+                key={item.name}
+                to={item.route}
+                colorStart={isDarkModeEnabled ? "#003459": "#00A8E8" }
+                colorEnd={isDarkModeEnabled ? "#000" :"#fff" }
+                duration={900}
+                // colorEnd=''
               >
-                Resume
-              </a>
-            </button>
-          </div>
+                <div className="group transition duration-300">
+                {item.name}
+                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
+                </div>
+              </BubblyLink>    
+              <span className="mx-1 text-lg md:text-xl lg:text-2xl">/</span>
+            </div>
+          ))}
+          <Toggle />
         </div>
       </div>
       <div className="md:hidden">
-        {open && (
-          <div className="flex flex-col px-2 pt-2 pb-3 space-y-1">
+        {
+          <Transition
+            show={open}
+            className="flex flex-col px-2 space-y-1 pb-3"
+            as="div"
+            enter="transition ease-out duration-1000"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-500"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.route}
+              <div
                 className={classNames(
                   location.pathname === item.route
-                    ? "bg-[#002836] text-white"
-                    : "text-gray-300 hover:bg-[#002836] hover:text-white",
-                  "px-3 py-2 rounded-md text-sm font-medium"
+                    ? "dark:text-white text-black font-semibold"
+                    :"text-gray-400  hover:text-black dark:hover:text-white font-normal hover:font-semibold",
+                  "px-3 py-2 border-b-2 hover:border-[#00A8E8] dark:hover:text-white transition-all duration-1000 "
                 )}
               >
-                {item.name}
-              </Link>
+                <BubblyLink
+                  key={item.name}
+                  to={item.route}
+                  colorStart={isDarkModeEnabled ? "#003459" : "#00A8E8"}
+                  duration={900}
+                >
+                  {item.name}
+                </BubblyLink>
+              </div>
             ))}
-          </div>
-        )}
+            <Toggle className="px-3 pt-2" />
+          </Transition>
+        }
       </div>
     </div>
   );

@@ -43,9 +43,9 @@ const Contact = () => {
 
   return (
     <>
-      <div className="  bg-[#ffffff] border-t border-[#003459] ">
+      <div className="bg-white dark:bg-black">
         <div className=" py-10 px-10 h-full">
-          <h1 className="text-2xl font-semibold text-[#007EA7] ">Contact</h1>
+          <h1 className="text-3xl font-semibold text-[#007EA7] ">Contact</h1>
 
           <div className="flex sm:flex-row flex-col ">
             <div className="flex-auto w-6/6 sm:w-3/6 ">
@@ -170,7 +170,7 @@ const Contact = () => {
                 </form>
               </div>
             </div>
-            <div className=" flex flex-auto w-6/6 sm:w-3/6 bg-brick-pattern border border-transparent rounded-md mt-2 sm:mt-0">
+            <div className=" flex flex-auto w-6/6 sm:w-3/6  mt-2 sm:mt-0">
               <img
                 className=" mx-auto"
                 src="/images/contact.svg"
