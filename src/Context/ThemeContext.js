@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext(false);
 // export const themes = {
 //     light: {
 //       main: "#000000",

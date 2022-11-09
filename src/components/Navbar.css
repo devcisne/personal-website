@@ -1,0 +1,19 @@
+.react-bubbly-transitions__bubbly-link{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+
+}
+
+@media (min-width: 768px){
+    .react-bubbly-transitions__bubbly-link{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+}
+}
+
+@media (min-width: 1024px){
+    .react-bubbly-transitions__bubbly-link{
+        font-size: 1.5rem;
+        line-height: 2rem;
+}
+}

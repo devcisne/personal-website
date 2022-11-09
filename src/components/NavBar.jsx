@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CgClose, CgMenu } from "react-icons/cg";
 import { useLocation } from "react-router-dom";
 import { Transition } from "@headlessui/react";
 import Toggle from "./Toggle";
 import { BubblyLink } from "react-bubbly-transitions";
+import ThemeContext from "../Context/ThemeContext";
+import "./Navbar.css"
+
 
 function NavBar() {
   const location = useLocation();
+  const { isDarkModeEnabled } = useContext(ThemeContext);
 
   const navigation = [
     { name: "Home", route: "/" },
@@ -27,7 +31,7 @@ function NavBar() {
   }, [location]);
 
   return (
-    <div className=" dark:bg-red-800" id="header">
+    <div className=" dark:bg-black" id="header">
       <div
         className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 relative flex items-center justify-between h-16"
         id="headerContent"
@@ -36,8 +40,12 @@ function NavBar() {
           className="absolute inset-y-0 left-0 flex items-center px-2 sm:static sm:inset-auto  sm:pr-0"
           id="logoSection"
         >
-          <div className="group transition duration-300 font-mono text-gray-400">
-            <BubblyLink to={"/"} colorStart="#00A8E8" duration={900}>
+          <div className="group transition duration-300 font-mono text-gray-400 ">
+            <BubblyLink
+              to={"/"}
+              colorStart={isDarkModeEnabled ? "#003459" : "#00A8E8"}
+              duration={900}
+            >
               DiegoCisneros.dev
               <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
             </BubblyLink>
@@ -62,66 +70,70 @@ function NavBar() {
         </div>
         {/* nav items */}
         {/* big menu */}
-        <div className="hidden md:flex  space-x-2 items-center">
+        <div className="hidden md:flex space-x-2 items-center">
           {navigation.map((item) => (
             <div
               className={classNames(
                 location.pathname === item.route
-                  ? " text-white"
-                  : "text-gray-300  hover:text-white",
-                " py-2 rounded-md text-sm font-medium"
+                  ? " dark:text-white text-black font-semibold"
+                  : "text-gray-400  hover:text-black dark:hover:text-white font-normal hover:font-semibold",
+                " py-2 rounded-md"
               )}
             >
               <BubblyLink
                 key={item.name}
                 to={item.route}
-                colorStart="#00A8E8"
+                colorStart={isDarkModeEnabled ? "#003459": "#00A8E8" }
+                colorEnd={isDarkModeEnabled ? "#000" :"#fff" }
                 duration={900}
                 // colorEnd=''
               >
+                <div className="group transition duration-300">
                 {item.name}
-              </BubblyLink>
-              <span className="mx-1">/</span>
+                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
+                </div>
+              </BubblyLink>    
+              <span className="mx-1 text-lg md:text-xl lg:text-2xl">/</span>
             </div>
           ))}
-          <Toggle/>
-
+          <Toggle />
         </div>
       </div>
       <div className="md:hidden">
-          {
-            <Transition  show={open}
-            className="flex flex-col px-2 py-2 space-y-1"          
+        {
+          <Transition
+            show={open}
+            className="flex flex-col px-2 space-y-1 pb-3"
             as="div"
             enter="transition ease-out duration-1000"
             enterFrom="transform opacity-0 scale-95"
             enterTo="transform opacity-100 scale-100"
             leave="transition ease-in duration-500"
             leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95">
-              {navigation.map((item) => (
-                <div
-                  className={classNames(
-                    location.pathname === item.route
-                      ? " text-white"
-                      : "text-gray-300  hover:text-white",
-                    "px-3 py-2 rounded-md text-sm font-medium"
-                  )}
+            leaveTo="transform opacity-0 scale-95"
+          >
+            {navigation.map((item) => (
+              <div
+                className={classNames(
+                  location.pathname === item.route
+                    ? "dark:text-white text-black font-semibold"
+                    :"text-gray-400  hover:text-black dark:hover:text-white font-normal hover:font-semibold",
+                  "px-3 py-2 border-b-2 hover:border-[#00A8E8] dark:hover:text-white transition-all duration-1000 "
+                )}
+              >
+                <BubblyLink
+                  key={item.name}
+                  to={item.route}
+                  colorStart={isDarkModeEnabled ? "#003459" : "#00A8E8"}
+                  duration={900}
                 >
-                  <BubblyLink
-                    key={item.name}
-                    to={item.route}
-                    colorStart="#00A8E8"
-                    duration={900}
-                  >
-                    {item.name}
-                  </BubblyLink>
-                </div>
-              ))}
-              <Toggle  className="px-3"/>
-
-            </Transition>
-          }
+                  {item.name}
+                </BubblyLink>
+              </div>
+            ))}
+            <Toggle className="px-3 pt-2" />
+          </Transition>
+        }
       </div>
     </div>
   );

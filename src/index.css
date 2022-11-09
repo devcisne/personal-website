@@ -4,7 +4,7 @@
 
 @layer components {
   .default-link {
-    @apply text-[#00A8E8] hover:text-[#003459] hover:underline hover:decoration-[#00A8E8];
+    @apply text-[#00A8E8]  hover:underline hover:decoration-[#00A8E8] ;
   }
   }
   
