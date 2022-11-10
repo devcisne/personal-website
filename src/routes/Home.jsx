@@ -4,25 +4,11 @@ import Newsletter from "../components/Newsletter";
 const Home = () => {
   useEffect(() => window.renderTagCloud(), []);
 
-  //   <button
-  //   type="button"
-  //   className="bg-[#003459] p-1 rounded text-gray-400 hover:text-white ring-2  ring-gray-400 hover:ring-white"
-  // >
-  //   <a
-  //     href="https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/documents/diegoCisnerosCV.pdf"
-  //     target="_blank"
-  //     className="mx-2"
-  //     rel="noreferrer"
-  //   >
-  //     Resume
-  //   </a>
-  // </button>
-
   return (
     <>
-      <div className=" bg-white dark:bg-black">
+      <div className=" bg-white dark:bg-black font-Ubuntu">
         <div className="w-[95vw] h-min-[80vh] sm:h-[80vh] mx-auto px-4 pb-2 sm:pb-0 flex sm:flex-row flex-col">
-          <div className="my-auto flex-auto w-full sm:w-4/6 ">
+          <div className="my-auto flex-auto w-full sm:w-4/6 py-5 sm:py-0">
             <p className="text-lg md:text-xl font-semibold text-[#00A8E8] ">
               Hi, my name is
             </p>
@@ -42,7 +28,7 @@ const Home = () => {
                     target="_blank"
                     className="mx-2" rel="noreferrer"
                   >
-                    Download Resume
+                    View Resume
                   </a>
                 </span>
               </button>
@@ -51,7 +37,7 @@ const Home = () => {
 
           <div
             id="myCanvasContainer"
-            className=" flex-auto sm:w-2/6 w-full my-auto h-4/6 py-8 sm:py-0"
+            className=" flex-auto sm:w-2/6 w-full my-auto h-[50vh] sm:h-4/6 py-12 sm:py-0"
           >
             <canvas id="myCanvas" className="w-full h-full">
               <ul>

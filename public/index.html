@@ -5,15 +5,19 @@
     <link rel="icon" href="/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Personal website for Diego Cisneros"
-    />
+    <meta name="description" content="Personal website for Diego Cisneros" />
     <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
 
     <link rel="manifest" href="./manifest.json" />
 
-    <title>Diego Cisneros | Software developer </title>
+    <title>Diego Cisneros | Software developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -25,20 +29,19 @@
         textColour: "#00A8E8",
         depth: 0.99,
         outlineMethod: "none",
-        initial:[0.070, 0.080],
-        noSelect:true,
-        wheelZoom:false
+        initial: [0.07, 0.08],
+        noSelect: true,
+        wheelZoom: false,
       };
 
       function renderTagCloud() {
         try {
-          TagCanvas.Start("myCanvas",'',options);
+          TagCanvas.Start("myCanvas", "", options);
         } catch (e) {
           // something went wrong, hide the canvas container
           document.getElementById("myCanvasContainer").style.display = "none";
         }
-      };
-
+      }
     </script>
   </body>
 </html>

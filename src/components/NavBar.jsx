@@ -40,7 +40,7 @@ function NavBar() {
           className="absolute inset-y-0 left-0 flex items-center px-2 sm:static sm:inset-auto  sm:pr-0"
           id="logoSection"
         >
-          <div className="group transition duration-300 font-mono text-gray-400 ">
+          <div className="group transition duration-300  text-gray-400 font-source">
             <BubblyLink
               to={"/"}
               colorStart={isDarkModeEnabled ? "#003459" : "#00A8E8"}

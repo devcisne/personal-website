@@ -4,7 +4,7 @@ import { BsGithub, BsTwitter, BsLinkedin } from "react-icons/bs";
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-col pb-2  bg-white dark:bg-black">
+      <div className="flex flex-col pb-2 bg-white dark:bg-black">
         <p className="text-gray-500 font-thin mx-auto">
           Designed &#38; built by Diego Cisneros
         </p>
