@@ -2,7 +2,7 @@ import React from 'react'
 
 const NewsletterSuccess = () => {
   return (
-    <div className="relative overflow-hidden bg-white py-16 min-h-[85vh]">
+    <div className="relative overflow-hidden bg-white dark:bg-black py-16 min-h-[85vh]">
       <div className="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full lg:[overflow-anchor:none]">
         <div className="relative mx-auto h-full max-w-prose text-lg" aria-hidden="true">
           <svg
@@ -73,11 +73,11 @@ const NewsletterSuccess = () => {
       <div className="relative px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-prose text-lg">
           <h1>
-            <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-[#003459] sm:text-4xl">
+            <span className="mt-2 block text-centertext-3xl font-semibold text-[#007EA7] leading-8 tracking-tight sm:text-4xl">
             Your subscription request has been successful!
             </span>
           </h1>
-          <p className="mt-8 text-xl leading-8">
+          <p className="mt-8 text-xl leading-8 text-black dark:text-white">
           Thanks for confirming your subscription. You have been added to my email list and will be receiving the next newsletter soon.
 
           </p>
