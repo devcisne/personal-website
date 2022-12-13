@@ -35,12 +35,13 @@ const Home = () => {
             </p>
             <br />
             <div className="flex justify-center">
-              <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br dark:from-[#003459] from-[#00A8E8]  dark:to-black to-white dark:group-hover:from-[#003459] group-hover:from-[#00A8E8] dark:group-hover:to-black group-hover:to-white hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-xl dark:shadow-blue-800/80 ">
-                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br dark:from-[#003459] from-[#00A8E8]  dark:to-black to-white dark:group-hover:from-[#003459] group-hover:from-[#00A8E8] dark:group-hover:to-black group-hover:to-white hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-xl dark:shadow-blue-800/80 ">
+                <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                   <a
                     href="https://s3.eu-central-1.amazonaws.com/storage-diegocisneros.dev/documents/diegoCisnerosCV.pdf"
                     target="_blank"
-                    className="mx-2" rel="noreferrer"
+                    className="mx-2"
+                    rel="noreferrer"
                   >
                     Download Resume
                   </a>

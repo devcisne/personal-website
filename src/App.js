@@ -13,6 +13,7 @@ import NotFound from "./routes/NotFound";
 import NewsletterSuccess from "./routes/NewsletterSuccess";
 import ThemeContext from "./Context/ThemeContext"
 import { BubblyContainer } from "react-bubbly-transitions";
+import NewsletterViewer from "./routes/NewsletterViewer";
 
 function App() {
   const [isDarkModeEnabled,setDarkModeEnabled]=useState(false)
@@ -30,6 +31,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:blogID" element={<BlogEntry />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/newsletter" element={<NewsletterViewer />} />
           <Route path="/newsletter/success" element={<NewsletterSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -19,6 +19,8 @@ function NavBar() {
     { name: "Blog", route: "/blog" },
     // { name: "Portfolio", route: "/portfolio" },
     { name: "Contact", route: "/contact" },
+    { name: "Newsletter", route: "/newsletter" },
+
   ];
 
   function classNames(...classes) {
@@ -52,7 +54,7 @@ function NavBar() {
           </div>
         </div>
         <div
-          className="absolute inset-y-0 right-0 flex items-center md:hidden"
+          className="absolute inset-y-0 right-0 flex items-center lg:hidden"
           id="mobile menu icon"
         >
           {/* Mobile menu button*/}
@@ -70,7 +72,7 @@ function NavBar() {
         </div>
         {/* nav items */}
         {/* big menu */}
-        <div className="hidden md:flex space-x-2 items-center">
+        <div className="hidden lg:flex space-x-2 items-center">
           {navigation.map((item) => (
             <div
               className={classNames(
@@ -93,13 +95,13 @@ function NavBar() {
                 <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
                 </div>
               </BubblyLink>    
-              <span className="mx-1 text-lg md:text-xl lg:text-2xl">/</span>
+              <span className="ml-1 text-lg lg:text-2xl">/</span>
             </div>
           ))}
           <Toggle />
         </div>
       </div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         {
           <Transition
             show={open}
