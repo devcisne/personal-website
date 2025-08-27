@@ -8,101 +8,131 @@ import { CgSpinner } from "react-icons/cg";
 import NotFound from "./NotFound";
 
 const BlogEntry = () => {
-  const [entryData, setEntryData] = useState({
-    entryID: 0,
-    title: "",
-    content: "",
-    pubDate: 0,
-    comments: [],
-    imageArray: [],
-  });
-  const { blogID } = useParams();
+  const [entryData, setEntryData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { blogID } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
+    let isMounted = true;
 
     const fetchData = async () => {
-      return await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_ENDPOINT}/api/blogEntries/${blogID}`,
-      });
-    };
-    fetchData()
-      .then((response) => {
-        // console.log("response", response)
-        if (response.status === 200) {
-          // console.log("Request was successfull.");
-          setEntryData(response.data);
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_ENDPOINT}/api/blogEntries/${blogID}`,
+        });
+
+        if (isMounted) {
+          if (response.status === 200) {
+            setEntryData(response.data);
+          } else if (response.status === 404) {
+            setEntryData(null);
+          } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
           setIsLoading(false);
         }
-      })
-      .catch((error) => {
-        console.log(`Request failed. error:`, error);
-      });
+      } catch (error) {
+        if (isMounted) {
+          console.error("Failed to fetch blog entry:", error);
+          setError("Failed to load blog entry. Please try again later.");
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [blogID]);
 
-  if (entryData == null) return <NotFound />;
-
   const insertImagesIntoHTML = (content, imageArray) => {
-    var resultHTML = content;
+    if (!content || !imageArray) return content || "";
+
+    let resultHTML = content;
+
     imageArray.forEach((image, index) => {
+      // Create a proper image tag with alt text and styling
+      const imageTag = `<img src="${image.url}" alt="${
+        image.legend || `Image ${index + 1}`
+      }" class="max-h-[50vh] m-auto rounded-xl outline-double outline-[#007EA7] inline-block" />`;
+
+      // Replace placeholders with actual image tags
       resultHTML = resultHTML
-        .replace(`<imagePlaceHolder${index}>`, `${image.url}`)
-        .replace(`<legend${index}>`, `${image.legend}`);
-      // <img src=\"/images/oldHomepage.png\" alt=\"website profile\" className=\" max-h-[50vh] m-auto
-      // rounded-xl outline-double outline-[#007EA7] inline-block\" />
-      // console.log(`resultHTML == ${index}`,resultHTML)
+        .replace(`<imagePlaceHolder${index}>`, imageTag)
+        .replace(`<legend${index}>`, image.legend || "");
     });
 
-    // console.log(resultHTML);
     return resultHTML;
   };
 
-  return (
-    <>
-      <div className="bg-white dark:bg-black">
-        <div className="container py-10 px-4 text-justify w-full mx-auto ">
-          {!isLoading ? (
-          <>
-              <h1 className="text-3xl text-center text-[#007EA7] font-bold">
-                {entryData.title}
-              </h1>
-              <br />
-              <div className="mx-5">
-                <h2>Article published on: {entryData.pubDate}</h2>
-                <br />
-                {/* Don't even ask about this, i spent the whole weekend trying to figure  out why the css was not being applied despite the fact that it is actually present when you inspect the element, had to do put these hidden elements in order to force the other ones to render correctly. I will eventually fix this */}
-                <ul className="list-disc hidden"></ul>
-                <blockquote className="p-4 my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-gray-500 dark:bg-gray-800 hidden">
-                  <p className="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white"></p>
-                </blockquote>
-                {/* end of weird block */}
-                <div
-                  className="text-justify mb-3 text-black dark:text-white"
-                  //  dangerouslySetInnerHTML={{ __html:insertImagesIntoHTML(entryData.content,entryData.imageArray)
-                  //  }}
-                >
-                  {HTMLReactParser(
-                    insertImagesIntoHTML(
-                      entryData.content,
-                      entryData.imageArray
-                    )
-                  )}
-                </div>
-                <CommentsList comments={entryData.comments} />
-                <AddCommentForm
-                  entryID={entryData.entryID}
-                  setEntryData={setEntryData}
-                />
-              </div>
-            </>
-          ) : (
-            <CgSpinner className="animate-spin text-9xl mx-auto" />
-          )}
+  if (isLoading) {
+    return (
+      <div className="bg-white dark:bg-black min-h-[85vh] flex items-center justify-center">
+        <div className="text-center">
+          <CgSpinner className="animate-spin text-9xl mx-auto dark:text-white" />
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            Loading blog entry...
+          </p>
         </div>
       </div>
-    </>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-white dark:bg-black min-h-[85vh] flex items-center justify-center">
+        <div
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative max-w-md"
+          role="alert"
+        >
+          <strong className="font-bold">Error! </strong>
+          <span className="block sm:inline">{error}</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!entryData) {
+    return <NotFound />;
+  }
+
+  return (
+    <div className="bg-white dark:bg-black">
+      <div className="container py-10 px-4 text-justify w-full mx-auto">
+        <h1 className="text-3xl text-center text-[#007EA7] font-bold mb-6">
+          {entryData.title}
+        </h1>
+        <div className="mx-5">
+          <h2 className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+            Article published on: {entryData.pubDate}
+          </h2>
+
+          <div className="text-justify mb-3 text-black dark:text-white prose max-w-none">
+            {HTMLReactParser(
+              insertImagesIntoHTML(entryData.content, entryData.imageArray)
+            )}
+          </div>
+
+          <div className="mt-12">
+            <CommentsList comments={entryData.comments} />
+          </div>
+
+          <div className="mt-8">
+            <AddCommentForm
+              entryID={entryData.entryID}
+              setEntryData={setEntryData}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

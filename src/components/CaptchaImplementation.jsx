@@ -5,61 +5,65 @@ import axios from "axios";
 const CaptchaImplementation = ({ setDisabled }) => {
   const captchaRef = useRef(null);
   const [isTokenFailed, setTokenFailed] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
 
-  const captchaExpired = (setDisabled) => {
-    // console.log("the captcha has expired");
+  const captchaExpired = () => {
     setDisabled(true);
   };
 
-  const verifyToken = (token, setDisabled, captchaRef) => {
-    // console.log("verify this", token);
+  const verifyToken = async (token) => {
+    if (!token) return;
 
-    const postData = async () => {
-      return await axios({
+    setIsVerifying(true);
+    setTokenFailed(false);
+
+    try {
+      const response = await axios({
         method: "POST",
         url: `${process.env.REACT_APP_API_ENDPOINT}/api/verifyCaptcha`,
         data: { token },
       });
-    };
 
-    postData()
-      .then((response) => {
-        // console.log(response);
-        if (response.status === 200) {
-          // console.log("verification result", response.data);
-          // console.log("token verified successfully!");
-          if (response.data.success) {
-            setDisabled(false);
-            setTokenFailed(false);
-          } else {
-            captchaRef.current.reset();
-            setTokenFailed(true);
-            // console.log("failed token");
-          }
+      if (response.status === 200) {
+        if (response.data.success) {
+          setDisabled(false);
+          setTokenFailed(false);
+        } else {
+          captchaRef.current?.reset();
+          setTokenFailed(true);
+          setDisabled(true);
         }
-      })
-      .catch((error) => {
-        console.log("Error sending token for verification:", error);
-      });
+      }
+    } catch (error) {
+      console.error("Error sending token for verification:", error);
+      setTokenFailed(true);
+      setDisabled(true);
+    } finally {
+      setIsVerifying(false);
+    }
   };
 
   return (
-    <>
-      <div className="flex flex-col">
-        <ReCAPTCHA
-          className="mx-auto"
-          sitekey={process.env.REACT_APP_SITE_KEY}
-          ref={captchaRef}
-          onChange={(token) => verifyToken(token, setDisabled, captchaRef)}
-          onExpired={() => captchaExpired(setDisabled)}
-        />
-        {isTokenFailed && (
-          <p className="font-thin text-pink-600">
-            Verification failed, you might be a robot &#x1F914;.Try again
-          </p>
-        )}
-      </div>
-    </>
+    <div className="flex flex-col">
+      <ReCAPTCHA
+        className="mx-auto"
+        sitekey={process.env.REACT_APP_SITE_KEY}
+        ref={captchaRef}
+        onChange={verifyToken}
+        onExpired={captchaExpired}
+        aria-label="CAPTCHA verification"
+      />
+      {isVerifying && (
+        <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+          Verifying...
+        </p>
+      )}
+      {isTokenFailed && (
+        <p className="font-thin text-pink-600 mt-2" role="alert">
+          Verification failed, you might be a robot &#x1F914;. Please try again.
+        </p>
+      )}
+    </div>
   );
 };
 

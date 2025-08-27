@@ -1,19 +1,9 @@
 import { createContext } from "react";
 
-const ThemeContext = createContext(false);
-// export const themes = {
-//     light: {
-//       main: "#000000",
-//       secondary: "#eeeeee",
-//       accent:""
-//     },
-//     dark: {
-//       main: "#ffffff",
-//       secondary: "#222222",
-//       accent:""
-//     },
-//   };
-
-// export const DarkModeEnabled=false;
+// Define default context value with proper typing
+const ThemeContext = createContext({
+  isDarkModeEnabled: false,
+  setDarkModeEnabled: () => {},
+});
 
 export default ThemeContext;

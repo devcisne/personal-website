@@ -1,12 +1,13 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import ThemeContext from "../Context/ThemeContext";
 
 const Newsletter = () => {
   const [isSuccess, setSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const { isDarkModeEnabled } = useContext(ThemeContext);
-
 
   const {
     register,
@@ -17,32 +18,41 @@ const Newsletter = () => {
     defaultValues: { email: "" },
   });
 
-  const sendForm = (data) => {
-    const postData = async () => {
-      return await axios({
+  const sendForm = async (data) => {
+    try {
+      setIsSubmitting(true);
+      setError(null);
+
+      const response = await axios({
         method: "POST",
         url: `${process.env.REACT_APP_API_ENDPOINT}/api/registerNewsletterEmail`,
         data,
       });
-    };
 
-    postData()
-      .then((response) => {
-        // console.log(response);
-        if (response.status === 200) {
-          // console.log("newsletter sign up form submitted successfully");
-          setSuccess(true);
-          reset();
-          setTimeout(() => setSuccess(false), 10000);
-        }
-      })
-      .catch((error) => {
-        console.log(`Message failed to send. error:`, error);
-      });
+      if (response.status === 200) {
+        setSuccess(true);
+        reset();
+        // Hide success message after 10 seconds
+        setTimeout(() => setSuccess(false), 10000);
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Newsletter signup failed:", error);
+      setError("Failed to sign up for newsletter. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className={ isDarkModeEnabled ? "bg-[url('backgroundDark.svg')]":"bg-[url('backgroundLight.svg')] "}>
+    <div
+      className={
+        isDarkModeEnabled
+          ? "bg-[url('backgroundDark.svg')]"
+          : "bg-[url('backgroundLight.svg')]"
+      }
+    >
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:py-16 lg:px-8">
         <div className="lg:w-0 lg:flex-1">
           <h2
@@ -52,9 +62,9 @@ const Newsletter = () => {
             Sign up for my newsletter
           </h2>
           <p className="mt-3 max-w-3xl text-xl leading-6 text-black dark:text-white">
-            Only the best programming memes, tech news &amp; tips carefully
-            selected from the most interesting subreddits and the depths of
-            twitter will be delivered.
+            Only the best programming memes, tech news & tips carefully selected
+            from the most interesting subreddits and the depths of twitter will
+            be delivered.
           </p>
         </div>
         <div className="mt-8 lg:mt-0 lg:ml-8">
@@ -78,32 +88,55 @@ const Newsletter = () => {
                 errors.email
                   ? "border-pink-500 text-pink-600 focus:border-pink-500 focus:ring-pink-500"
                   : ""
-              } `}
+              }`}
               placeholder="Enter your email"
+              aria-invalid={errors.email ? "true" : "false"}
+              aria-describedby={errors.email ? "email-error" : undefined}
             />
             <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-[#00A8E8] px-5 py-3 text-base font-medium text-white hover:bg-[#007EA7] dark:bg-[#007EA7] dark:hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-offset-2 focus:ring-offset-gray-800"
+                disabled={isSubmitting}
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-[#00A8E8] px-5 py-3 text-base font-medium text-white hover:bg-[#007EA7] dark:bg-[#007EA7] dark:hover:bg-[#00A8E8] focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-75"
+                aria-busy={isSubmitting}
               >
-                Sign up
+                {isSubmitting ? "Signing up..." : "Sign up"}
               </button>
             </div>
           </form>
-          <p className="mt-3 text-sm text-pink-600">{errors.email?.message}</p>
-          {isSuccess && (
-            <p className="mt-3 text-sm font-bold text-black dark:text-white">
-              {/* We care about the protection of your data. Read our{' '}
-              <a href="#" className="font-medium text-white underline">
-                Privacy Policy.
-              </a> */}
-              Thanks for your interest in the newsletter.<br/> Please check your
-              inbox to complete the subscription process.
+
+          {errors.email && (
+            <p id="email-error" className="mt-3 text-sm text-pink-600">
+              {errors.email.message}
             </p>
+          )}
+
+          {error && (
+            <div
+              className="mt-3 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <strong className="font-bold">Error! </strong>
+              <span className="block sm:inline">{error}</span>
+            </div>
+          )}
+
+          {isSuccess && (
+            <div
+              className="mt-3 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <strong className="font-bold">Success! </strong>
+              <span className="block sm:inline">
+                Thanks for your interest in the newsletter. Please check your
+                inbox to complete the subscription process.
+              </span>
+            </div>
           )}
         </div>
       </div>
     </div>
   );
 };
+
 export default Newsletter;

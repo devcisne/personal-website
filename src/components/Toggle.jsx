@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { Switch } from "@headlessui/react";
 import { BsLightbulbFill, BsLightbulbOffFill } from "react-icons/bs";
 import ThemeContext from "../Context/ThemeContext";
@@ -7,21 +7,20 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Toggle = ({ className }) => {
+const Toggle = React.memo(({ className }) => {
   const { setDarkModeEnabled, isDarkModeEnabled } = useContext(ThemeContext);
-  const newClassName = className;
   const [enabled, setEnabled] = useState(isDarkModeEnabled);
-  const toggleFunction = (value) => {
-    if (value) {
-      setDarkModeEnabled(true);
-    } else {
-      setDarkModeEnabled(false);
-    }
-    setEnabled(value);
-  };
+
+  const toggleFunction = useCallback(
+    (value) => {
+      setDarkModeEnabled(value);
+      setEnabled(value);
+    },
+    [setDarkModeEnabled]
+  );
 
   return (
-    <div className={`${newClassName}`}>
+    <div className={className || ""}>
       <Switch
         checked={enabled}
         onChange={toggleFunction}
@@ -29,6 +28,7 @@ const Toggle = ({ className }) => {
           enabled ? "bg-gray-800" : "bg-gray-200",
           "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ring-2 ring-[#00A8E8] focus:ring-offset-2"
         )}
+        aria-label={enabled ? "Switch to light mode" : "Switch to dark mode"}
       >
         <span className="sr-only">Use setting</span>
         <span
@@ -63,6 +63,6 @@ const Toggle = ({ className }) => {
       </Switch>
     </div>
   );
-};
+});
 
 export default Toggle;
