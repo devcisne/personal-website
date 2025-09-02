@@ -20,17 +20,32 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@/components/*": [
+        "app/_components/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
       ]
     },
     "allowJs": true,
-    "noEmit": true
+    "noEmit": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
-    "pages",
+    "app",
     "components",
     "lib",
+    "next-env.d.ts",
     "styles",
-    "next-env.d.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

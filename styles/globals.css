@@ -2,10 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'react-image-gallery/styles/css/image-gallery.css';
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-black;
+  }
+}
+
 @layer components {
   .default-link {
-    @apply text-[#00A8E8]  hover:underline hover:decoration-[#00A8E8] ;
+    @apply text-[#00A8E8] hover:underline hover:decoration-[#00A8E8];
   }
+
+  /* Header styles */
+  #header {
+    @apply w-full max-w-[100vw] overflow-x-hidden;
   }
-  
-@import "~react-image-gallery/styles/css/image-gallery.css";
+
+  #headerContent {
+    @apply max-w-full px-2 sm:px-6 lg:px-8;
+  }
+
+  #mobile-menu-icon {
+    @apply pr-2 lg:hidden;
+  }
+
+  .react-bubbly-transitions__bubbly-link {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+}
+
+/* Gallery styles */
+.gallery-container {
+  @apply w-full h-full;
+}
+
+.image-gallery-slide img {
+  @apply w-full h-auto;
+}
+
+/* Form styles */
+input, textarea {
+  @apply dark:bg-gray-800 dark:text-white dark:border-gray-600;
+}
+
+/* Dark mode transitions */
+.dark {
+  @apply transition-colors duration-200;
+}
