@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  darkMode: 'class',
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     extend: {
       backgroundImage: {
@@ -11,10 +15,9 @@ module.exports = {
       },
       fontFamily: {
         Ubuntu: ['"Ubuntu"', ...defaultTheme.fontFamily.sans],
-        source: ['"Source Code Pro"', ...defaultTheme.fontFamily.mono]
-
-      }
+        source: ['"Source Code Pro"', ...defaultTheme.fontFamily.mono],
+      },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/line-clamp")],
+  plugins: [require("@tailwindcss/forms")],
 };
