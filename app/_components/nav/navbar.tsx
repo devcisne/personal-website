@@ -13,7 +13,7 @@ const NAVIGATION_ITEMS = [
   { name: "Home", route: "/" },
   { name: "About me", route: "/about" },
   { name: "Gallery", route: "/gallery" },
-  { name: "Portfolio", route: "/portfolio" },
+  // { name: "Portfolio", route: "/portfolio" },
   { name: "Contact", route: "/contact" },
 ];
 
@@ -23,7 +23,6 @@ function classNames(...classes: (string | boolean | undefined)[]): string {
 
 function NavBar() {
   const pathname = usePathname();
-  const { isDarkModeEnabled } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
 
   return (
@@ -78,7 +77,7 @@ function NavBar() {
                 pathname === item.route
                   ? "dark:text-white text-black font-semibold"
                   : "text-gray-400 hover:text-black dark:hover:text-white font-normal hover:font-semibold",
-                "py-2 rounded-md"
+                "py-2 rounded-md flex items-center"
               )}
             >
               <Link
@@ -96,7 +95,7 @@ function NavBar() {
                   <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#00A8E8]"></span>
                 </div>
               </Link>
-              <span className="ml-1 text-lg lg:text-2xl">/</span>
+              <span className="ml-1 text-base self-center">/</span>
             </div>
           ))}
           <Toggle />
