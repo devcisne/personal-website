@@ -5,8 +5,8 @@ export default function HomePage() {
   return (
     <>
       <Script src="/tagcanvas.min.js" strategy="beforeInteractive" />
-      <div className="bg-white dark:bg-black font-Ubuntu">
-        <div className="w-[95vw] h-min-[80vh] sm:h-[80vh] mx-auto px-4 pb-2 sm:pb-0 flex sm:flex-row flex-col">
+      <div className="min-h-screen bg-white dark:bg-black font-Ubuntu">
+        <div className="w-[95vw] h-[80vh] mx-auto px-4 pb-2 sm:pb-0 flex sm:flex-row flex-col">
           <div className="my-auto flex-auto w-full sm:w-4/6 py-5 sm:py-0">
             <p className="text-lg md:text-xl font-semibold text-[#00A8E8]">
               Hi, my name is
