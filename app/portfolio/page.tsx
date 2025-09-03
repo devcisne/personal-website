@@ -41,7 +41,7 @@ const portfolioItems = [
   },
 ];
 
-export default function PortfolioPage() {
+const PortfolioPage = () => {
   return (
     <div className="min-h-[85vh] bg-white dark:bg-black">
       <div className="container py-10 px-4">
@@ -101,4 +101,6 @@ export default function PortfolioPage() {
       </div>
     </div>
   );
-}
+};
+
+export default PortfolioPage;

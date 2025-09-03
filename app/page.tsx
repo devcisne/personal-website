@@ -1,7 +1,7 @@
 import Script from 'next/script';
 import TagCloud from './_components/home/tag-cloud';
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <>
       <Script src="/tagcanvas.min.js" strategy="beforeInteractive" />
@@ -41,4 +41,6 @@ export default function HomePage() {
       </div>
     </>
   );
-}
+};
+
+export default HomePage;

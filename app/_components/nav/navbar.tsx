@@ -21,7 +21,7 @@ function classNames(...classes: (string | boolean | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-function NavBar() {
+const NavBar = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -142,6 +142,6 @@ function NavBar() {
       </div>
     </div>
   );
-}
+};
 
 export default React.memo(NavBar);

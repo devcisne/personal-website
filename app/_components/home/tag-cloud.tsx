@@ -19,7 +19,7 @@ declare global {
   }
 }
 
-export default function TagCloud() {
+const TagCloud = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -77,4 +77,6 @@ export default function TagCloud() {
       </canvas>
     </div>
   );
-}
+};
+
+export default TagCloud;

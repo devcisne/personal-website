@@ -39,7 +39,7 @@ const GALLERY_IMAGES = [
   },
 ];
 
-export default function GalleryPage() {
+const GalleryPage = () => {
   return (
     <div className="min-h-[85vh] bg-white dark:bg-black">
       <div className="py-10 px-4 sm:px-10 text-justify w-full mx-auto">
@@ -60,4 +60,6 @@ export default function GalleryPage() {
       </div>
     </div>
   );
-}
+};
+
+export default GalleryPage;

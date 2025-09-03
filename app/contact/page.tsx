@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import CaptchaImplementation from "@/components/ui/captcha";
 
-export default function ContactPage() {
+const ContactPage = () => {
   const [isDisabled, setDisabled] = useState(true);
   const [isSuccess, setSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -230,4 +230,6 @@ export default function ContactPage() {
       </div>
     </div>
   );
-}
+};
+
+export default ContactPage;

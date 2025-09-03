@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-black flex flex-col justify-center items-center px-6">
       <Image
@@ -20,4 +20,6 @@ export default function NotFound() {
       </Link>
     </div>
   );
-}
+};
+
+export default NotFound;
